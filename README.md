@@ -81,12 +81,7 @@ The project uses a native **CSS Variables** approach for theming.
 You can customize theme colors in:
 
 ```
-src/assets/styles/framework/_dark-theme.scss
-```
-or
-
-```
-src/assets/styles/framework/_light-theme.scss
+src/assets/styles/framework/themes/
 ```
 
 The theme toggle logic is located in:
