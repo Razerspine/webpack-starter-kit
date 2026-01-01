@@ -1,22 +1,22 @@
-@use 'variables' as *;
+@use '../settings' as *;
 
 .table {
   width: 100%;
   border-collapse: collapse;
   font-family: $font-family;
   font-size: .95rem;
-  color: $color-dark;
-  background: $white;
+  color: var(--text-primary);
+  background: var(--bg-surface);
 
   th, td {
     padding: .75rem;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-interactive);
     vertical-align: middle;
     text-align: left;
   }
 
   thead {
-    background: $color-light;
+    background: var(--text-secondary);
 
     th {
       font-weight: 700;
@@ -24,7 +24,7 @@
   }
 
   tbody tr:hover {
-    background: lighten($color-light, 2%);
+    background: var(--text-primary);
   }
 
   .table-sm th, .table-sm td {

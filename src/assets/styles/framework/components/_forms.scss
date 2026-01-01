@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use '../settings' as *;
 
 .form-control {
   display: block;
@@ -6,23 +6,23 @@
   padding: .5rem .75rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: $color-dark;
-  background-color: $white;
+  color: var(--text-primary);
+  background-color: var(--bg-subtle);
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-subtle);
   border-radius: $border-radius;
   transition: border-color .15s ease, box-shadow .15s ease;
   box-sizing: border-box;
 
   &:focus {
-    color: $color-dark;
-    border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, .12);
+    color: var(--text-secondary);
+    border-color: var(--border-interactive);
+    box-shadow: var(--shadow-outline);
     outline: none;
   }
 
   &::placeholder {
-    color: #6c757d;
+    color: var(--text-disabled);
     opacity: .6;
   }
 }
@@ -38,8 +38,8 @@
 .form-select {
   @extend .form-control;
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, $color-dark 50%),
-  linear-gradient(135deg, $color-dark 50%, transparent 50%);
+  background-image: linear-gradient(45deg, transparent 50%, var(--slate-900) 50%),
+  linear-gradient(135deg, var(--slate-900) 50%, transparent 50%);
   background-position: calc(100% - 1.25rem) calc(1rem + 2px), calc(100% - .75rem) calc(1rem + 2px);
   background-size: .45rem .45rem, .45rem .45rem;
   background-repeat: no-repeat;
@@ -57,7 +57,7 @@
     width: 1rem;
     height: 1rem;
     margin: 0;
-    accent-color: $color-primary;
+    accent-color: var(--brand-500);
   }
 
   label {
@@ -73,6 +73,6 @@
 
 .form-help {
   font-size: .875rem;
-  color: $color-muted;
+  color: var(--text-disabled);
   margin-top: .25rem;
 }

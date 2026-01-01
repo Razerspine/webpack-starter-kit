@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use '../settings' as *;
 
 @function breakpoint($key) {
   @return map-get($breakpoints, $key);
