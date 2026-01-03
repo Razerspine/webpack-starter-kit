@@ -1,4 +1,9 @@
 extends @views/layout/index.pug
+include @views/mixins/form-input.pug
+include @views/mixins/form-select.pug
+include @views/mixins/form-checkbox.pug
+include @views/mixins/form-radio.pug
+include @views/mixins/form-textarea.pug
 
 block variables
   - title = 'Forms'
@@ -10,35 +15,21 @@ block content
   section.section
     h1.title-h1.m-b-4 Forms
     form.form
-      .form-group
-        label.form-label(for='name') Name
-        input.form-control(id='name', type='text', placeholder='Enter your name')
+      +formInput('email', 'email', 'Email', 'example@mail.com', 'email')
 
-      .form-group
-        label.form-label(for='email') Email
-        input.form-control(id='email', type='email', placeholder='example@mail.com')
+      +formInput('password', 'password', 'Password', 'Enter password', 'password')
 
-      .form-group
-        label.form-label(for='message') Message
-        textarea.form-textarea(id='message', placeholder='Type message...')
+      +formTextarea('message', 'Message', 'Type your message...', 'message')
 
-      .form-group
-        label.form-label(for='topic') Topic
-        select.form-select(id='topic')
-          option(value='') Choose topic
-          option(value='support') Support
-          option(value='feedback') Feedback
-          option(value='other') Other
+      +formSelect('topic', null, [
+        {value: 'support', text: 'Support'},
+        {value: 'feedback', text: 'Feedback'},
+        {value: 'other', text: 'Other'}
+      ])
 
-      .form-group.form-check
-        input.form-check-input(type='checkbox', id='agree')
-        label.form-label(for='agree') I agree all terms
+      +formCheckbox('subscribe', 'Subscribe to newsletter', 'newsletter', 'yes')
 
       .form-group
         span.form-label Communication method
-        .form-check
-          input.form-check-input(type='radio', id='contact-email', name='contact', value='email')
-          label.form-label(for='contact-email') Email
-        .form-check
-          input.form-check-input(type='radio', id='contact-phone', name='contact', value='phone')
-          label.form-label(for='contact-phone') Phone
+        +formRadio('contact-email', 'Email', 'contact', 'email', true)
+        +formRadio('contact-phone', 'Phone', 'contact', 'phone')

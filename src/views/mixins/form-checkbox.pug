@@ -1,0 +1,61 @@
+//- Form checkbox mixin
+//- Renders a configurable checkbox input with label.
+//- Supports custom name, value, and checked state.
+//-
+//- Parameters:
+//-   id       - **String** — Unique identifier for the <input> element.
+//-              Also used by the <label> `for` attribute.
+//-              Example: 'agree', 'subscribe'.
+//-              Default: none (required).
+//-   label    - **String** — Visible label text displayed next to the checkbox.
+//-              Example: 'I agree to terms', 'Subscribe to newsletter'.
+//-              Default: none (required).
+//-   name     - **String** — Name attribute for grouping or form submission.
+//-              Example: 'terms', 'preferences'.
+//-              Default: ''.
+//-   value    - **String** — Value submitted when the checkbox is checked.
+//-              Example: 'yes', 'true', 'newsletter'.
+//-              Default: 'on' (browser default).
+//-   checked  - **Boolean** — Whether the checkbox is checked by default.
+//-              Example: true, false.
+//-              Default: false.
+//-
+//- Behavior:
+//-   - Renders a `.form-group.form-check` wrapper for spacing and alignment.
+//-   - The input always has `.form-check-input` class for styling.
+//-   - The label always has `.form-label` class and is linked via `for=id`.
+//-   - If `checked=true`, the checkbox is preselected.
+//-   - The `value` is submitted only if the checkbox is checked.
+//-
+//- Notes about styling and classes:
+//-   - Visual appearance is controlled by `.form-check-input` and `.form-label`
+//-     styles in your SCSS.
+//-   - To add custom classes or attributes, extend the mixin or wrap it.
+//-   - Ensure `id` is unique to avoid duplicate `for`/`id` collisions.
+//-
+//- Examples:
+//-   // Basic checkbox
+//-   +formCheckbox('agree', 'I agree to all terms')
+//-
+//-   // Checkbox with custom name and value
+//-   +formCheckbox('subscribe', 'Subscribe to newsletter', 'newsletter', 'yes')
+//-
+//-   // Checkbox checked by default
+//-   +formCheckbox('updates', 'Receive updates', 'updates', 'true', true)
+//-
+//-   // Multiple checkboxes in a group
+//-   .form-group
+//-     span.form-label Preferences
+//-     +formCheckbox('pref-email', 'Email notifications', 'preferences', 'email')
+//-     +formCheckbox('pref-sms', 'SMS notifications', 'preferences', 'sms')
+//-     +formCheckbox('pref-push', 'Push notifications', 'preferences', 'push')
+mixin formCheckbox(id, label, name='', value='on', checked=false)
+  .form-group.form-check
+    input.form-check-input(
+      type='checkbox',
+      id=id,
+      name=name,
+      value=value,
+      checked=checked
+    )
+    label.form-label(for=id)= label
