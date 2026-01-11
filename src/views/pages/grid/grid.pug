@@ -1,0 +1,81 @@
+extends @views/layout/index.pug
+
+block variables
+  - title = 'Grid'
+
+append style
+  link(rel='stylesheet' href='./style.scss')
+
+block content
+  section.section.m-b-4
+    h1.title-h1.m-b-4 Grid
+    section.section
+      h3.title-h4.m-b-2 1. Basic Grid
+      p.m-b-2
+        | Two columns split the row evenly.
+        | Each .col-6 spans half of the 12‑column grid, so the layout shows two equal blocks side by side.
+      .container
+        .row
+          .col-6
+            .card.bg-brand-500 Left column (6/12)
+          .col-6
+            .card.bg-brand-500 Right column (6/12)
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2 2. Responsive Example
+    p.m-b-2
+      | Columns adapt to screen size.
+      | On small screens, each block uses .col-12 and spans the full width.
+      | On medium and larger screens, .col-md-6 makes them half‑width, so they sit side by side.
+    .container
+      .row
+        .col-12.col-md-6
+          .card.bg-brand-500 Full width on mobile, half on desktop
+        .col-12.col-md-6
+          .card.bg-brand-500 Full width on mobile, half on desktop
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2 3. Three Columns
+    p.m-b-2
+      | Three equal columns in one row.
+      | Each .col-4 spans four of the twelve grid columns, resulting in three evenly sized blocks across the row.
+    .container
+      .row
+        .col-4
+          .card.bg-brand-500 Column 1
+        .col-4
+          .card.bg-brand-600 Column 2
+        .col-4
+          .card.bg-brand-700 Column 3
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2 4. Full Width Column
+    p.m-b-2
+      | A single block spans the entire row.
+      | Using .col-full applies grid-column: 1 / -1, so the element stretches across all available columns.
+    .container
+      .row
+        .col-full
+          .card.bg-brand-500 This div all 12 columns
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2 5. Offset Example
+    p.m-b-2
+      | Column shifted to the right.
+      | .col-4 defines the width, while .offset-2 adds a left margin equal to two grid columns,
+      | creating spacing before the block.
+    .container
+      .row
+        .col-4.offset-2
+          .card.bg-brand-500 Offset by 2 columns
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2 6. Responsive Offset
+    p.m-b-2
+      | Offset applied only on larger screens.
+      | On mobile, the block is .col-6 (half width). On medium screens and above, it becomes .col-md-4 with .offset-md-2,
+      | so it shifts right by two columns while keeping a narrower width.
+    .container
+      .row
+        .col-6.col-md-4.offset-md-2
+          .card.bg-brand-500 Responsive offset: on desktop shifted by 2 columns
