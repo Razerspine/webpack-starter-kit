@@ -1,0 +1,34 @@
+{
+  "home": {
+    "mainTitle": "Webpack Starter Kit",
+    "description": "A lightweight, powerful, and production-ready boilerplate for building modern static websites. Powered by Pug, SCSS, and ES6+",
+    "viewRepository": "View on GitHub",
+    "viewGuide": "View Style Guide",
+    "blocks": {
+      "webpack": {
+        "title": "Webpack 5",
+        "description": "Fully configured Webpack build system with Hot Module Replacement (HMR) for a fast development experience."
+      },
+      "pug": {
+        "title": "Pug Templating",
+        "description": "Write cleaner HTML using Pug (formerly Jade). Includes layout inheritance, mixins, and variable support."
+      },
+      "theming": {
+        "title": "SCSS & Theming",
+        "description": "Built-in support for SASS/SCSS. Features a custom flexible grid system and CSS Variables for easy Dark/Light mode switching."
+      },
+      "js": {
+        "title": "JavaScript ES6+",
+        "description": "Modern JavaScript support via Babel. Write modular code using ES6 imports/exports comfortably."
+      },
+      "asset": {
+        "title": "Asset Management",
+        "description": "Automatic handling of images, fonts, and static assets. Optimized for production builds."
+      },
+      "architecture": {
+        "title": "Clean Architecture",
+        "description": "Organized folder structure separating logic, styles, and views. scalable for small to medium projects."
+      }
+    }
+  }
+}

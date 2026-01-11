@@ -10,6 +10,24 @@ header.header
         span.logo__title #{logoTitle}
     .header__col
       +btn(
+        'EN',
+        'text',
+        'icon-medium',
+        {
+          type: 'button',
+          'data-lang': 'en'
+        }
+      )
+      +btn(
+        'UK',
+        'text',
+        'icon-medium',
+        {
+          type: 'button',
+          'data-lang': 'uk'
+        }
+      )
+      +btn(
         null,
         'icon',
         'icon-medium',
