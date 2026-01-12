@@ -42,9 +42,10 @@
   -moz-appearance: none;
   background-image: var(--select-arrow);
   background-repeat: no-repeat;
-  background-position: right 0.75rem center;
+  background-position: right .5rem center;
   background-size: 1rem;
   cursor: pointer;
+  padding: .5rem 1.5rem .5rem .75rem;
 
   option {
     color: var(--text-primary);

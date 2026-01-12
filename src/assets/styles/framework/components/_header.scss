@@ -24,6 +24,10 @@
   &__col {
     display: flex;
     align-items: center;
+
+    &--space {
+      gap: $gutter;
+    }
   }
 }
 

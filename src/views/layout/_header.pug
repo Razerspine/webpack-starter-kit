@@ -1,4 +1,5 @@
 include @views/mixins/btn.pug
+include @views/mixins/single-select.pug
 
 - const logoTitle = 'webpack starter kit';
 
@@ -8,25 +9,7 @@ header.header
       .logo
         img.logo__icon(src='@images/logo.svg' alt='logo' loading='lazy')
         span.logo__title #{logoTitle}
-    .header__col
-      +btn(
-        'EN',
-        'text',
-        'icon-medium',
-        {
-          type: 'button',
-          'data-lang': 'en'
-        }
-      )
-      +btn(
-        'UK',
-        'text',
-        'icon-medium',
-        {
-          type: 'button',
-          'data-lang': 'uk'
-        }
-      )
+    .header__col.header__col--space
       +btn(
         null,
         'icon',
@@ -38,3 +21,7 @@ header.header
         },
         'light_mode'
       )
+      +singleSelect('languageSwitcher', null, [
+        {value: 'en', label: 'EN'},
+        {value: 'uk', label: 'UK'}
+      ], 'label', 'value', 'en', null)

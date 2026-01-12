@@ -88,6 +88,6 @@ mixin singleSelect(id, label, options, labelKey='text', valueKey='value', select
         option(value='', disabled, selected, hidden)= placeholder
       each opt in options
         if typeof opt === 'string'
-          option(value=opt, data-value=opt selected=(opt === selectedValue))= opt
+          option(value=opt, data-opt-value=opt selected=(opt === selectedValue))= opt
         else
-          option(value=opt[valueKey], data-value=opt[valueKey] selected=(opt[valueKey] === selectedValue))= opt[labelKey]
+          option(value=opt[valueKey], data-opt-value=opt[valueKey] selected=(opt[valueKey] === selectedValue))= opt[labelKey]
