@@ -1,8 +1,8 @@
 extends @views/layout/index.pug
 include @views/mixins/form-input.pug
 include @views/mixins/single-select.pug
-include @views/mixins/form-checkbox.pug
-include @views/mixins/form-radio.pug
+include @views/mixins/input-checkbox.pug
+include @views/mixins/input-radio.pug
 include @views/mixins/form-textarea.pug
 
 block variables
@@ -28,9 +28,11 @@ block content
           {value: 'other', text: 'Other'}
         ])
 
-      +formCheckbox('subscribe', 'Subscribe to newsletter', 'newsletter', 'yes')
+      .form-group
+        +inputCheckbox('subscribe', 'Subscribe to newsletter', 'newsletter', 'yes')
 
       .form-group
-        span.form-label Communication method
-        +formRadio('contact-email', 'Email', 'contact', 'email', true)
-        +formRadio('contact-phone', 'Phone', 'contact', 'phone')
+       .input-group
+         span.form-label.w-100 Communication method
+         +inputRadio('contact-email', 'Email', 'contact', 'email')
+         +inputRadio('contact-phone', 'Phone', 'contact', 'phone')

@@ -1,0 +1,10 @@
+@use 'input-base' as *;
+
+input[type="radio"] {
+  @extend .input-base;
+  border-radius: 50%;
+
+  &:checked {
+    background-image: var(--radio-icon);
+  }
+}

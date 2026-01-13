@@ -1,0 +1,48 @@
+.input-base {
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+  margin: 0;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover:not(:disabled) {
+    border-color: var(--brand-600);
+  }
+
+  &:focus-visible {
+    border-color: var(--brand-500);
+    box-shadow: var(--shadow-outline);
+  }
+
+  &:checked {
+    background-color: var(--brand-500);
+    border-color: var(--brand-500);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--slate-100);
+    border-color: var(--slate-200);
+
+    &:checked {
+      background-color: var(--slate-400);
+      border-color: var(--slate-400);
+    }
+  }
+
+  &.is-invalid {
+    border-color: var(--error);
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--bg-surface), 0 0 0 4px var(--error);
+    }
+  }
+}

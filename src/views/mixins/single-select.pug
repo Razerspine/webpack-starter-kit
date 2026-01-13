@@ -81,13 +81,13 @@
 //-     {value:'other', text:'Other'}
 //-   ], 'text', 'value', '', 'Please select a topic')
 mixin singleSelect(id, label, options, labelKey='text', valueKey='value', selectedValue='', placeholder='Choose an option')
-    if label
-      label.form-label(for=id)= label
-    select.form-select(id=id, name=id)
-      if !label && !selectedValue
-        option(value='', disabled, selected, hidden)= placeholder
-      each opt in options
-        if typeof opt === 'string'
-          option(value=opt, data-opt-value=opt selected=(opt === selectedValue))= opt
-        else
-          option(value=opt[valueKey], data-opt-value=opt[valueKey] selected=(opt[valueKey] === selectedValue))= opt[labelKey]
+  if label
+    label.form-label(for=id)= label
+  select.single-select(id=id, name=id)
+    if !label && !selectedValue
+      option(value='', disabled, selected, hidden)= placeholder
+    each opt in options
+      if typeof opt === 'string'
+        option(value=opt, data-opt-value=opt selected=(opt === selectedValue))= opt
+      else
+        option(value=opt[valueKey], data-opt-value=opt[valueKey] selected=(opt[valueKey] === selectedValue))= opt[labelKey]

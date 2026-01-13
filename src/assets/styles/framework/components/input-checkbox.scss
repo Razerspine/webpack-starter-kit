@@ -1,0 +1,10 @@
+@use 'input-base' as *;
+
+input[type="checkbox"] {
+  @extend .input-base;
+  border-radius: 0.25rem;
+
+  &:checked {
+    background-image: var(--checkbox-icon);
+  }
+}

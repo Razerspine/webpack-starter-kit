@@ -1,0 +1,7 @@
+@use 'form-control' as *;
+
+.form-textarea {
+  @extend .form-control;
+  min-height: 100px;
+  resize: vertical;
+}
