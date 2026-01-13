@@ -29,7 +29,7 @@ export default class TranslationService {
   getTranslationKey(path) {
     return path.split('.').reduce((obj, key) => {
       return obj && obj[key] !== undefined ? obj[key] : null;
-    }, this.translations) || `[${path}]`;
+    }, this.translations) || `${path}`;
   }
 
   applyTranslations() {
