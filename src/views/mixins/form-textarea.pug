@@ -20,7 +20,6 @@
 //-                 Default: ''.
 //-
 //- Behavior:
-//-   - Renders a `.form-group` wrapper for spacing and alignment.
 //-   - The textarea always has `.form-textarea` class for styling.
 //-   - The label, if provided, uses `.form-label` class and is linked via `for=id`.
 //-   - The placeholder text is shown until the user types content.
@@ -47,11 +46,10 @@
 //-     +formTextarea('bio', 'Biography', 'Tell us about yourself', 'bio')
 //-     +formTextarea('notes', 'Notes', 'Additional notes...', 'notes')
 mixin formTextarea(id, label, placeholder='', name='')
-  .form-group
-    if label
-      label.form-label(for=id)= label
-    textarea.form-textarea(
-      id=id,
-      name=name,
-      placeholder=placeholder
-    )
+  if label
+    label.form-label(for=id)= label
+  textarea.form-textarea(
+    id=id,
+    name=name,
+    placeholder=placeholder
+  )

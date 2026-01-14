@@ -15,11 +15,14 @@ block content
   section.section
     h1.title-h1.m-b-4 Forms
     form.form
-      +formInput('email', 'email', 'Email', 'example@mail.com', 'email')
+      .form-group
+        +formInput('email', 'email', 'Email', 'example@mail.com', 'email')
 
-      +formInput('password', 'password', 'Password', 'Enter password', 'password')
+      .form-group
+        +formInput('password', 'password', 'Password', 'Enter password', 'password')
 
-      +formTextarea('message', 'Message', 'Type your message...', 'message')
+      .form-group
+        +formTextarea('message', 'Message', 'Type your message...', 'message')
 
       .form-group
         +singleSelect('topic', null, [
@@ -34,5 +37,5 @@ block content
       .form-group
         p.form-label.w-100 Communication method
         .input-group
-         +inputRadio('contact-email', 'Email', 'contact', 'email')
-         +inputRadio('contact-phone', 'Phone', 'contact', 'phone')
+          +inputRadio('contact-email', 'Email', 'contact', 'email')
+          +inputRadio('contact-phone', 'Phone', 'contact', 'phone')
