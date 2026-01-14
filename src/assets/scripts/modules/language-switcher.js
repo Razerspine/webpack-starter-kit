@@ -41,7 +41,9 @@ export default class LanguageSwitcher {
   init() {
     this.select = document.getElementById(this.selectId);
     if (!this.select) {
-      // select not found — nothing to attach
+      const currentLang = this.translationService.getCurrentLang();
+      this.translationService.setLanguage(currentLang);
+      console.warn(`LanguageSwitcher: select '#${this.selectId}' not found in DOM`);
       return;
     }
 
