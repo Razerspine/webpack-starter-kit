@@ -1,7 +1,16 @@
 extends @views/layout/index.pug
+include @views/mixins/code.pug
+include @views/mixins/data-table.pug
 
 block variables
   - title = 'Buttons'
+  - const data = [
+  -   { parameter: 'text', type: 'String | null', default: 'null', description: 'Visible button text; pass null for icon-only buttons' },
+  -   { parameter: 'variant', type: 'String', default: 'primary', description: 'Visual variant; added as class btn--{variant}' },
+  -   { parameter: 'size', type: 'String', default: 'medium', description: 'Size modifier; added as class btn--{size} and icon--{size}' },
+  -   { parameter: 'attrs', type: 'Object | null', default: { type: 'button' }, description: 'Attributes spread to the <button> via &attributes(attrs) (type, id, aria-*, class, data-*)' },
+  -   { parameter: 'iconName', type: 'String | null', default: 'null', description: 'Icon name rendered inside <span class="button-icon material-symbols-outlined">' }
+  -]
 
 append style
   link(rel='stylesheet' href='./style.scss')
@@ -9,39 +18,99 @@ append style
 block content
   section.section
     h1.title-h1.m-b-4 Buttons
-    .buttons-row
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Button mixin parameters
+      +dataTable(data, ['parameter', 'type', 'default', 'description'], {
+        showIndex: false,
+        showActions: false,
+        labels: {
+          parameter: 'Parameter',
+          type: 'Type',
+          default: 'Default',
+          description: 'Description'
+        }
+      })
 
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Accessibility notes
+      p
+        | • For icon-only buttons, provide an accessible name via aria-label or title:
+        code { 'aria-label': 'Close' }.
+      p
+        | • Always set the correct button type (button, submit, reset) in attrs to avoid unexpected form behavior.
+      p
+        | • Ensure visible focus styles (use :focus-visible) for keyboard users.
+
+    .b-container
       h5.title-h4 Primary
-      .buttons-row__section
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('small', 'primary', 'small', {type: 'button'})
+          | +btn('medium', 'primary', 'medium', {type: 'button'})
+          | +btn('large', 'primary', 'large', {type: 'button'})
+
+      .b-container__section
         +btn('small', 'primary', 'small', {type: 'button'})
         +btn('medium', 'primary', 'medium', {type: 'button'})
         +btn('large', 'primary', 'large', {type: 'button'})
 
       h5.title-h4 Secondary
-      .buttons-row__section
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('small', 'secondary', 'small', {type: 'button'})
+          | +btn('medium', 'secondary', 'medium', {type: 'button'})
+          | +btn('large', 'secondary', 'large', {type: 'button'})
+
+      .b-container__section
         +btn('small', 'secondary', 'small', {type: 'button'})
         +btn('medium', 'secondary', 'medium', {type: 'button'})
         +btn('large', 'secondary', 'large', {type: 'button'})
 
       h5.title-h4 Outline
-      .buttons-row__section
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('small', 'outline', 'small', {type: 'button'})
+          | +btn('medium', 'outline', 'medium', {type: 'button'})
+          | +btn('large', 'outline', 'large', {type: 'button'})
+
+      .b-container__section
         +btn('small', 'outline', 'small', {type: 'button'})
         +btn('medium', 'outline', 'medium', {type: 'button'})
         +btn('large', 'outline', 'large', {type: 'button'})
 
       h5.title-h4 Button with icon
-      .buttons-row__section
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('small', 'primary', 'small', {type: 'button'}, 'settings')
+          | +btn('medium', 'secondary', 'medium', {type: 'button'}, 'settings')
+          | +btn('large', 'outline', 'large', {type: 'button'}, 'settings')
+
+      .b-container__section
         +btn('small', 'primary', 'small', {type: 'button'}, 'settings')
         +btn('medium', 'secondary', 'medium', {type: 'button'}, 'settings')
         +btn('large', 'outline', 'large', {type: 'button'}, 'settings')
 
       h5.title-h4 Text only
-      .buttons-row__section
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('small primary', 'text-primary', 'small', {type: 'button'})
+          | +btn('medium secondary', 'text-secondary', 'medium', {type: 'button'})
+          | +btn('medium secondary', 'text-primary', 'large', {type: 'button'})
+
+      .b-container__section
         +btn('small primary', 'text-primary', 'small', {type: 'button'})
         +btn('medium secondary', 'text-secondary', 'medium', {type: 'button'})
+        +btn('large primary', 'text-primary', 'large', {type: 'button'})
 
       h5.title-h4 Icon only
-      .buttons-row__section
+      .content-block.m-b-4
+        +code('pug')
+          | +btn(null, 'icon-primary', 'icon-small', {type: 'button'}, 'settings')
+          | +btn(null, 'icon-secondary', 'icon-medium', {type: 'button'}, 'settings')
+          | +btn(null, 'icon-outline', 'icon-large', {type: 'button'}, 'settings')
+          | +btn(null, 'icon', 'icon-medium', {type: 'button'}, 'settings')
+
+      .b-container__section
         +btn(null, 'icon-primary', 'icon-small', {type: 'button'}, 'settings')
         +btn(null, 'icon-secondary', 'icon-medium', {type: 'button'}, 'settings')
         +btn(null, 'icon-outline', 'icon-large', {type: 'button'}, 'settings')
