@@ -1,5 +1,10 @@
 @use '../settings' as *;
 
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -10,13 +15,14 @@
 
   th, td {
     padding: .75rem;
-    border: 1px solid var(--border-interactive);
+    border-bottom: 1px solid var(--border-subtle);
     vertical-align: middle;
     text-align: left;
+    white-space: nowrap;
   }
 
   thead {
-    background: var(--text-secondary);
+    background: var(--bg-subtle);
 
     th {
       font-weight: 700;
@@ -24,7 +30,7 @@
   }
 
   tbody tr:hover {
-    background: var(--text-primary);
+    background: var(--bg-subtle);
   }
 
   .table-sm th, .table-sm td {
