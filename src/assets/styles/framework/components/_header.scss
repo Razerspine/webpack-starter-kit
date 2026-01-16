@@ -25,6 +25,10 @@
     display: flex;
     align-items: center;
 
+    .single-select {
+      width: auto;
+    }
+
     &--space {
       gap: $gutter;
     }

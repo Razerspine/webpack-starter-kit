@@ -140,16 +140,19 @@ export default class ThemeToggle {
 
   /**
    * Update the icon inside the button to reflect the current theme.
-   * Expects the icon element to accept textContent (e.g., material icons).
+   * Replaces xlink:href and href on the <use> element.
    * @param {'dark'|'light'} theme
    * @private
    */
   _updateIcon(theme) {
     if (!this.button) return;
     const icon = this.button.querySelector(this.iconSelector);
-    if (!icon) return;
-    // swap icon text; adjust to your icon system if needed
-    icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+    const useElement = icon.querySelector('use');
+    if (!icon || !useElement) return;
+    const symbolId = theme === 'dark' ? '#icon-light-mode' : '#icon-dark-mode';
+    // Set both xlink:href
+    useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', symbolId);
+    useElement.setAttribute('href', symbolId);
   }
 
   /**

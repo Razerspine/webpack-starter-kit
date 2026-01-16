@@ -34,16 +34,17 @@
 //-                 attributes are spread.
 //-                 Example: `{ type: 'button', id: 'saveBtn', ariaLabel: 'Save' }`.
 //-                 Default: { type: 'button' }
-//-   iconName    - **String | null** — Optional icon name to render inside a
-//-                 `<span>` with classes `.button-icon.material-symbols-outlined`.
-//-                 If `null`, no icon is rendered.
+//-   iconName    - **String | null** — Icon name (without prefix). The mixin uses `#icon-{iconName}`
+//-                 in <use> to reference the SVG sprite symbol. If `null`, no icon is rendered.
+//-                 Example: 'settings' -> references <symbol id="icon-settings">.
 //-                 Default: null
 //-
 //- Behavior:
 //-   - `hasText` is computed to decide whether to render the text node.
 //-   - `btnClass` is built as 'btn btn--' + variant and `btnSize` as 'btn--' + size.
 //-   - The `<button>` receives combined classes and attributes from `attrs`.
-//-   - If `iconName` is provided, a `<span>` with the icon is rendered before text.
+//-   - If `iconName` is provided, the mixin renders <svg><use href="#icon-{iconName}"></use></svg>.
+//-   - Both `href` and `xlink:href` are included for broader browser compatibility.
 //-   - If `text` is a non-empty string, the text content is rendered after the icon.
 //-
 //- Notes about styling and classes:
@@ -98,6 +99,7 @@ mixin btn(text, variant='primary', size='medium', attrs={'type':'button'}, iconN
   - const btnSize = 'btn--' + size;
   button(class=btnClass + ' ' + btnSize)&attributes(attrs)
     if iconName
-      span.button-icon.material-symbols-outlined(class='icon--' + size) #{iconName}
+      svg.button-icon(class='icon--' + size role='img' aria-label=iconName)
+        use(xlink:href='#icon-' + iconName, href='#icon-' + iconName)
     if hasText
       | #{text}
