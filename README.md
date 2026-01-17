@@ -27,7 +27,7 @@ src/
 ├── assets/
 │   ├── fonts/          # Local font files
 │   ├── images/         # Images and icons
-│   ├── scripts/        # JS modules (entry: common.js)
+│   ├── scripts/        # JS modules (entry: app.js)
 │   └── styles/         # SCSS files
 │       ├── framework/  # Core logic (grid, theme variables)
 │       └── ...

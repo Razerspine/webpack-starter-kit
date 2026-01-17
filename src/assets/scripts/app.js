@@ -11,7 +11,7 @@ import uk from '../i18n/uk.json';
   const translationService = new TranslationService(locales, 'en');
   const languageSwitcher = new LanguageSwitcher(translationService, 'languageSwitcher');
 
-  logger.success('common.js successfully initialized and is now active!');
+  logger.success('app.js successfully initialized and is now active!');
 
   document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = new ThemeToggle();
