@@ -1,7 +1,6 @@
 const path = require('path');
 const PugPlugin = require('pug-plugin');
 
-// load constants from .env file
 require('dotenv').config();
 
 module.exports = (env, argv) => {
@@ -28,7 +27,6 @@ module.exports = (env, argv) => {
 
     plugins: [
       new PugPlugin({
-        // automatically processing templates in the path
         entry: 'src/views/pages/',
         // modify output filename of generated html as you want
         filename: ({chunk}) => {
@@ -38,29 +36,23 @@ module.exports = (env, argv) => {
         },
 
         js: {
-          // JS output filename, used if `inline` option is false (defaults)
           filename: 'js/[name].[contenthash:8].js',
           //inline: true, // inlines JS into HTML
         },
 
         css: {
-          // CSS output filename, used if `inline` option is false (defaults)
           filename: 'css/[name].[contenthash:8].css',
           //inline: true, // inlines CSS into HTML
         },
 
         preprocessorOptions: {
-          // enable build-in filters only those used in templates
           embedFilters: {
-            // enable the `:escape` filter
             escape: true,
-            // enable the `:code` filter
             code: {
               className: 'language-',
             },
-            // enable `:highlight` filter
             highlight: {
-              use: 'prismjs', // use the `prismjs` module as highlighter, must be installed
+              use: 'prismjs',
               verbose: isDev,
             }
           },
@@ -70,7 +62,6 @@ module.exports = (env, argv) => {
 
     module: {
       rules: [
-        // styles
         {
           test: /\.(css|sass|scss)$/,
           use: [
@@ -87,15 +78,12 @@ module.exports = (env, argv) => {
           ]
         },
 
-        // images
         {
           test: /\.(png|jpe?g|svg|webp|ico)$/i,
           oneOf: [
-            // inline image using `?inline` query
             {
               resourceQuery: /inline/, type: 'asset/inline',
             },
-            // auto inline by image size
             {
               type: 'asset', parser: {
                 dataUrlCondition: {
@@ -109,19 +97,15 @@ module.exports = (env, argv) => {
           ],
         },
 
-        // fonts
         {
           test: /\.(woff(2)?|ttf|otf|eot|svg)$/,
           type: 'asset/resource',
-          include: /assets\/fonts|node_modules/, // fonts from `assets/fonts` or `node_modules` directory only
+          include: /assets\/fonts|node_modules/,
           generator: {
-            // generates filename including last directory name to group fonts by name
-            filename: (pathData) => `fonts/${path.basename(
-              path.dirname(pathData.filename))}/[name][ext][query]`,
+            filename: 'fonts/[name][ext][query]'
           },
         },
 
-        // js
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
@@ -130,7 +114,6 @@ module.exports = (env, argv) => {
           }
         },
 
-        // web manifest
         {
           test: /\.webmanifest$/i,
           type: 'asset/resource',
@@ -149,8 +132,8 @@ module.exports = (env, argv) => {
     },
 
     stats: {
-      colors: true, // see https://webpack.js.org/configuration/stats/#stats-presets
-      preset: isDev ? 'minimal' : 'errors-only', // enable @debug output
+      colors: true,
+      preset: isDev ? 'minimal' : 'errors-only',
       loggingDebug: isDev ? ['sass-loader'] : [],
     },
   };
@@ -173,7 +156,7 @@ module.exports = (env, argv) => {
         'Cross-Origin-Opener-Policy': 'same-origin',
         'Cross-Origin-Embedder-Policy': 'require-corp',
       },
-      // rewrite rules
+
       historyApiFallback: {
         rewrites: [
           {from: /^\/$/, to: '/index.html'},
