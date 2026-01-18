@@ -64,7 +64,6 @@ blockquote, q {
 
 blockquote::before, blockquote::after,
 q::before, q::after {
-  content: '';
   content: none;
 }
 
@@ -144,7 +143,6 @@ legend {
 
 /* Utility: make images and media non-draggable by default */
 img, svg, video {
-  user-drag: none;
   user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
