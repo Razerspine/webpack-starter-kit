@@ -1,0 +1,41 @@
+extends @views/layout/index.pug
+include @views/mixins/form-input.pug
+include @views/mixins/single-select.pug
+include @views/mixins/input-checkbox.pug
+include @views/mixins/input-radio.pug
+include @views/mixins/form-textarea.pug
+
+block variables
+  - title = 'Forms'
+
+append style
+  link(rel='stylesheet' href='./style.less')
+
+block content
+  section.section
+    h1.title-h1.m-b-4 Forms
+    form.form
+      .form-group
+        +formInput('email', 'email', 'Email', 'example@mail.com', 'email')
+
+      .form-group
+        +formInput('password', 'password', 'Password', 'Enter password', 'password')
+
+      .form-group
+        +formTextarea('message', 'Message', 'Type your message...', 'message')
+
+      .form-group
+        +singleSelect('topic', null, [
+          {value: 'support', text: 'Support'},
+          {value: 'feedback', text: 'Feedback'},
+          {value: 'other', text: 'Other'}
+        ])
+
+      .form-group
+        +inputCheckbox('subscribe', 'Subscribe to newsletter', 'newsletter', 'yes')
+
+      .form-group
+        p.form-label.w-100 Communication method
+        .input-group
+          +inputRadio('contact-email', 'Email', 'contact', 'email')
+          +inputRadio('contact-phone', 'Phone', 'contact', 'phone')

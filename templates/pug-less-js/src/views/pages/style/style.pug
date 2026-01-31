@@ -1,0 +1,11 @@
+extends @views/layout/index.pug
+
+block variables
+  - title = 'Style Guide'
+
+append style
+  link(rel='stylesheet' href='./style.less')
+
+block content
+  section.section
+    h1.title-h1.m-b-4 Style Guide

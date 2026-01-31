@@ -1,0 +1,71 @@
+{
+  "home": {
+    "mainTitle": "Webpack Starter Kit",
+    "description": "A lightweight, powerful, and production-ready boilerplate for building modern static websites. Powered by Pug, SCSS, and ES6+",
+    "viewRepository": "View on GitHub",
+    "viewGuide": "View Style Guide",
+    "blocks": {
+      "webpack": {
+        "title": "Webpack 5",
+        "description": "Fully configured Webpack build system with Hot Module Replacement (HMR) for a fast development experience."
+      },
+      "pug": {
+        "title": "Pug Templating",
+        "description": "Write cleaner HTML using Pug (formerly Jade). Includes layout inheritance, mixins, and variable support."
+      },
+      "theming": {
+        "title": "SCSS & Theming",
+        "description": "Built-in support for SASS/SCSS. Features a custom flexible grid system and CSS Variables for easy Dark/Light mode switching."
+      },
+      "js": {
+        "title": "JavaScript ES6+",
+        "description": "Modern JavaScript support via Babel. Write modular code using ES6 imports/exports comfortably."
+      },
+      "asset": {
+        "title": "Asset Management",
+        "description": "Automatic handling of images, fonts, and static assets. Optimized for production builds."
+      },
+      "architecture": {
+        "title": "Clean Architecture",
+        "description": "Organized folder structure separating logic, styles, and views. scalable for small to medium projects."
+      }
+    }
+  },
+  "grid": {
+    "title": "Grid",
+    "blocks": {
+      "basic": {
+        "title": "1. Basic Grid",
+        "description": "Two columns split the row evenly. Each .col-6 spans half of the 12‑column grid, so the layout shows two equal blocks side by side.",
+        "columnText": "Left column (6/12)"
+      },
+      "responsive": {
+        "title": "2. Responsive Example",
+        "description": "Columns adapt to screen size. On small screens, each block uses .col-12 and spans the full width. On medium and larger screens, .col-md-6 makes them half‑width, so they sit side by side.",
+        "columnText": "Full width on mobile, half on desktop"
+      },
+      "columns": {
+        "title": "3. Three Columns",
+        "description": "Three equal columns in one row. Each .col-4 spans four of the twelve grid columns, resulting in three evenly sized blocks across the row.",
+        "columnText1": "Column 1",
+        "columnText2": "Column 2",
+        "columnText3": "Column 3"
+      },
+      "width": {
+        "title": "4. Full Width Column",
+        "description": "A single block spans the entire row. Using .col-full applies grid-column: 1 / -1, so the element stretches across all available columns.",
+        "columnText": "This div all 12 columns"
+      },
+      "offset": {
+        "title": "5. Offset Example",
+        "description": "Column shifted to the right. .col-4 defines the width, while .offset-2 adds a left margin equal to two grid columns, creating spacing before the block.",
+        "columnText": "Offset by 2 columns"
+      },
+      "reOffset": {
+        "title": "6. Responsive Offset",
+        "description": "Offset applied only on larger screens. On mobile, the block is .col-6 (half width). On medium screens and above, it becomes .col-md-4 with .offset-md-2, so it shifts right by two columns while keeping a narrower width.",
+        "columnText": "Responsive offset: on desktop shifted by 2 columns"
+      }
+    }
+  }
+}

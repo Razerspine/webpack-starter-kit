@@ -1,0 +1,115 @@
+extends @views/layout/index.pug
+include @views/mixins/code.pug
+include @views/mixins/data-table.pug
+
+block variables
+  - title = 'Buttons'
+  - const data = [
+  -   { parameter: 'text', type: 'String | null', default: 'null', description: 'Visible button text; pass null for icon-only buttons' },
+  -   { parameter: 'variant', type: 'String', default: 'primary', description: 'Visual variant; added as class btn--{variant}' },
+  -   { parameter: 'size', type: 'String', default: 'medium', description: 'Size modifier; added as class btn--{size} and icon--{size}' },
+  -   { parameter: 'attrs', type: 'Object | null', default: { type: 'button' }, description: 'Attributes spread to the &lt;button&gt; via &amp;attributes(attrs) (type, id, aria-*, class, data-*)' },
+  -   { parameter: 'iconName', type: 'String | null', default: 'null', description: 'The mixin uses #icon-{iconName} in &lt;use&gt to reference the SVG sprite symbol' }
+  -]
+
+append style
+  link(rel='stylesheet' href='./style.less')
+
+block content
+  section.section
+    h1.title-h1.m-b-4 Buttons
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Button mixin parameters
+      .table-wrapper
+        +dataTable(data, ['parameter', 'type', 'default', 'description'], {
+          showIndex: false,
+          showActions: false,
+          labels: {
+            parameter: 'Parameter',
+            type: 'Type',
+            default: 'Default',
+            description: 'Description'
+          }
+        })
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Accessibility notes
+      p
+        | • For icon-only buttons, provide an accessible name via aria-label or title:
+        code { 'aria-label': 'Close' }.
+      p
+        | • Always set the correct button type (button, submit, reset) in attrs to avoid unexpected form behavior.
+      p
+        | • Ensure visible focus styles (use :focus-visible) for keyboard users.
+
+    .b-container
+      h5.title-h4 Primary
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('Save', 'primary', 'small', {type: 'button'})
+          | +btn('Save', 'primary', 'medium', {type: 'button'})
+          | +btn('Save', 'primary', 'large', {type: 'button'})
+
+      .b-container__section
+        +btn('Save', 'primary', 'small', {type: 'button'})
+        +btn('Save', 'primary', 'medium', {type: 'button'})
+        +btn('Save', 'primary', 'large', {type: 'button'})
+
+      h5.title-h4 Secondary
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('Cancel', 'secondary', 'small', {type: 'button'})
+          | +btn('Cancel', 'secondary', 'medium', {type: 'button'})
+          | +btn('Cancel', 'secondary', 'large', {type: 'button'})
+
+      .b-container__section
+        +btn('Cancel', 'secondary', 'small', {type: 'button'})
+        +btn('Cancel', 'secondary', 'medium', {type: 'button'})
+        +btn('Cancel', 'secondary', 'large', {type: 'button'})
+
+      h5.title-h4 Outline
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('More', 'outline', 'small', {type: 'button'})
+          | +btn('More', 'outline', 'medium', {type: 'button'})
+          | +btn('More', 'outline', 'large', {type: 'button'})
+
+      .b-container__section
+        +btn('More', 'outline', 'small', {type: 'button'})
+        +btn('More', 'outline', 'medium', {type: 'button'})
+        +btn('More', 'outline', 'large', {type: 'button'})
+
+      h5.title-h4 Button with icon
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('Settings', 'primary', 'small', {type: 'button'}, 'settings')
+          | +btn('Settings', 'secondary', 'medium', {type: 'button'}, 'settings')
+          | +btn('Settings', 'outline', 'large', {type: 'button'}, 'settings')
+
+      .b-container__section
+        +btn('Settings', 'primary', 'small', {type: 'button'}, 'settings')
+        +btn('Settings', 'secondary', 'medium', {type: 'button'}, 'settings')
+        +btn('Settings', 'outline', 'large', {type: 'button'}, 'settings')
+
+      h5.title-h4 Text only
+      .content-block.m-b-4
+        +code('pug')
+          | +btn('Learn more', 'text-primary', 'medium', {type: 'button'})
+          | +btn('Dismiss', 'text-secondary', 'medium', {type: 'button'})
+
+      .b-container__section
+        +btn('Learn more', 'text-primary', 'medium', {type: 'button'})
+        +btn('Dismiss', 'text-secondary', 'medium', {type: 'button'})
+
+      h5.title-h4 Icon only
+      .content-block.m-b-4
+        +code('pug')
+          // Provide aria-label in attrs or rely on mixin fallback to iconName -> label
+          | +btn(null, 'icon-primary', 'medium', {type: 'button', 'aria-label': 'Settings'}, 'settings')
+          | +btn(null, 'icon-secondary', 'small', {type: 'button', 'aria-label': 'Close'}, 'close')
+          | +btn(null, 'icon-outline', 'large', {type: 'button'}, 'menu')
+
+      .b-container__section
+        +btn(null, 'icon-primary', 'medium', {type: 'button', 'aria-label': 'Settings'}, 'settings')
+        +btn(null, 'icon-secondary', 'small', {type: 'button', 'aria-label': 'Close'}, 'close')
+        +btn(null, 'icon-outline', 'large', {type: 'button'}, 'menu')

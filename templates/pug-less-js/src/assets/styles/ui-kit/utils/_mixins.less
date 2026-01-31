@@ -1,0 +1,36 @@
+@import '../settings/_index';
+
+.breakpoint(@key) when (@key = sm) {
+  @bp: @breakpoint-sm;
+}
+
+.breakpoint(@key) when (@key = md) {
+  @bp: @breakpoint-md;
+}
+
+.breakpoint(@key) when (@key = lg) {
+  @bp: @breakpoint-lg;
+}
+
+.breakpoint(@key) when (@key = xl) {
+  @bp: @breakpoint-xl;
+}
+
+.breakpoint(@key) when not (@key = sm) and not (@key = md) and not (@key = lg) and not (@key = xl) {
+  @bp: 0;
+}
+
+/* respond-to: використання через вкладений блок .-inner-content() */
+.respond-to(@key) {
+  .breakpoint(@key);
+  .-with-bp() when not (@bp = 0) {
+    @media (min-width: @bp) {
+      .-inner-content();
+    }
+  }
+  .-without-bp() when (@bp = 0) {
+    .-inner-content();
+  }
+  .-with-bp();
+  .-without-bp();
+}

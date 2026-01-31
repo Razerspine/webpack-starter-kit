@@ -1,0 +1,57 @@
+@import '../settings/_index';
+
+.header {
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-md);
+  grid-area: header;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: @container-max;
+    padding: @gutter;
+    margin: 0 auto;
+  }
+
+  &__col {
+    display: flex;
+    align-items: center;
+
+    .single-select {
+      width: 65px;
+    }
+
+    &--space {
+      gap: @gutter;
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+  }
+
+  &__title {
+    font-size: @base-font-size;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}

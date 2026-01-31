@@ -1,0 +1,124 @@
+extends @views/layout/index.pug
+include @views/mixins/code.pug
+include @views/mixins/data-table.pug
+
+block variables
+  - title = 'Table'
+  - const users = [
+  -   { id: 1, name: 'Olya', email: 'olya@example.com', roles: ['admin','editor'], createdAt: '2024-11-01T09:12:00Z' },
+  -   { id: 2, name: 'Ivan', email: 'ivan@example.com', roles: ['user'], createdAt: '2025-01-15T14:30:00Z' },
+  -   { id: 3, name: 'Marta', email: 'marta@example.com', roles: [], createdAt: '2024-12-05T08:00:00Z' }
+  - ];
+  - const empty = [];
+  - const mixed = [
+  -   { id: 10, title: 'Post A', tags: ['news','tech'], meta: { views: 120 } },
+  -   { id: 11, title: 'Post B', tags: [], meta: { views: 5 } }
+  - ];
+  - const formatters = {
+  -   createdAt: v => new Date(v).toLocaleDateString(),
+  -   roles: v => Array.isArray(v) && v.length ? v.join(', ') : '—',
+  -   meta: v => `<small class="muted">views: ${v && v.views || 0}</small>`
+  - }
+
+append style
+  link(rel='stylesheet' href='./style.less')
+
+block content
+  section.section
+    h1.title-h1.m-b-4 Table
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Basic usage auto columns
+      p.m-b-2
+        | The mixin will collect columns from object keys automatically.
+      .table-wrapper
+        +dataTable(users)
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Explicit columns and labels
+      p.m-b-2
+        | Provide a stable column order and friendly headers.
+      .table-wrapper
+        +dataTable(users, ['id','name','email','roles','createdAt'], {
+          showIndex: false,
+          showActions: false,
+          labels: {
+            id: 'ID',
+            name: 'Full name',
+            email: 'E‑mail',
+            roles: 'Roles',
+            createdAt: 'Joined'
+          },
+          formatters: {
+            createdAt: v => new Date(v).toLocaleDateString(),
+            roles: v => Array.isArray(v) && v.length ? v.join(', ') : '—'
+          }
+        })
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Index column and Actions slot
+      p.m-b-2
+        | Use the actions slot to render per-row controls. Inside the slot `item` and `i` are available.
+      .table-wrapper
+        +dataTable(users, ['id','name','email'], {showIndex: true, showActions: true})
+          a(href='/users/#{item && item.id || ""}' title='View') View
+          | &nbsp;
+          a(href='/users/#{item && item.id || ""}/edit' title='Edit') Edit
+          | &nbsp;
+          form(action='/users/#{item && item.id || ""}/delete' method='post' style='display:inline')
+            button(type='submit' class='link-like') Delete
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Formatters returning HTML
+      p.m-b-2
+        | If a formatter returns HTML, the mixin uses `td!=` so returned HTML will be rendered. Ensure strings are safe.
+      .table-wrapper
+        +dataTable(mixed, ['id','title','tags','meta'], {
+          showIndex: false,
+          showActions: false,
+          formatters: {
+            tags: v => Array.isArray(v) && v.length ? v.map(t => `<span class="tag">${t}</span>`).join(' ') : '<span class="muted">none</span>',
+            meta: v => `<small class="muted">views: ${v && v.views || 0}</small>`
+          },
+          labels: { id: 'ID', title: 'Title', tags: 'Tags', meta: 'Meta' }
+        })
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Empty dataset
+      p.m-b-2
+        | The table will render a single header cell spanning all columns with the `emptyText`.
+      .table-wrapper
+        +dataTable(empty, ['id','name','email'], {emptyText: 'No users found', showIndex: false, showActions: false})
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Custom formatters from variables
+      p.m-b-2
+        | Reuse `formatters` defined in variables block.
+      .table-wrapper
+        +dataTable(users, ['id','name','roles','createdAt'], {
+          showIndex: true,
+          showActions: true,
+          formatters: formatters,
+          labels: {
+            createdAt: 'Joined'
+          }
+        })
+          a(href='/profile/#{item && item.id || ""}') Profile
+          | &nbsp;
+          a(href='/message/#{item && item.id || ""}') Message
+
+    .content-block.m-b-4
+      h3.title-h3.m-b-2 Notes and best practices
+      ul
+        li
+          strong Prefer explicit columns:
+          |  pass `columns` when you need stable order.
+        li
+          strong Use labels:
+          |  provide `labels` for localized or friendly headers.
+        li
+          strong Keep formatters pure:
+          |  return safe strings; if returning HTML ensure it is escaped or trusted.
+        li
+          strong Hide actions:
+          |  set `showActions: false` to remove the Actions column.

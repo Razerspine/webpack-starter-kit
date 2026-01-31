@@ -1,0 +1,53 @@
+extends @views/layout/index.pug
+
+block variables
+  - title = 'Webpack Starter Kit'
+  - const gitHubLink = 'https://github.com/Razerspine/webpack-starter-kit'
+
+append style
+  link(rel='stylesheet' href='./style.less')
+
+append script
+  script(src='./home.js')
+
+block content
+  section.section
+    .row
+      .col-12
+        h1.title-h1.m-b-3 🚀 #[span(data-i18n='home.mainTitle')]
+        p.title-h5.text-muted.m-b-2(data-i18n='home.description')
+        .d-flex.w-100.m-b-4
+          a.btn.btn--primary.btn--medium.m-r-1(href=gitHubLink target="_blank" data-i18n="home.viewRepository")
+          a.btn.btn--outline.btn--medium(href="/style.html" data-i18n="home.viewGuide")
+
+  section.section
+    .row
+      .col-12.col-sm-6.col-md-4
+        .card.h-100
+          h3.title-h5.m-b-1 🛠️ #[span(data-i18n="home.blocks.webpack.title")]
+          p.text-body(data-i18n="home.blocks.webpack.description")
+
+      .col-12.col-sm-6.col-md-4
+        .card.h-100
+          h3.title-h5.m-b-1 🐶 #[span(data-i18n="home.blocks.pug.title")]
+          p.text-body(data-i18n="home.blocks.pug.description")
+
+      .col-12.col-sm-6.col-md-4
+        .card.h-100
+          h3.title-h5.m-b-1 🎨 #[span(data-i18n="home.blocks.theming.title")]
+          p.text-body(data-i18n="home.blocks.theming.description")
+
+      .col-12.col-sm-6.col-md-4
+        .card.h-100
+          h3.title-h5.m-b-1 ⚡ #[span(data-i18n="home.blocks.js.title")]
+          p.text-body(data-i18n="home.blocks.js.description")
+
+      .col-12.col-sm-6.col-md-4
+        .card.h-100
+          h3.title-h5.m-b-1 🖼️ #[span(data-i18n="home.blocks.asset.title")]
+          p.text-body(data-i18n="home.blocks.asset.description")
+
+      .col-12.col-sm-6.col-md-4
+        .card.h-100
+          h3.title-h5.m-b-1 📐 #[span(data-i18n="home.blocks.architecture.title")]
+          p.text-body(data-i18n="home.blocks.architecture.description")

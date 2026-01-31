@@ -1,0 +1,45 @@
+@import '../settings/_index';
+
+.table-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: @font-family;
+  font-size: .95rem;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+
+  th, td {
+    padding: .75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: middle;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  thead {
+    background: var(--bg-subtle);
+
+    th {
+      font-weight: 700;
+    }
+  }
+
+  tbody tr:hover {
+    background: var(--bg-subtle);
+  }
+
+  .table-sm th, .table-sm td {
+    padding: .4rem .6rem;
+  }
+
+  .table-striped tbody tr:nth-child(odd) {
+    background: rgba(0, 0, 0, .02);
+  }
+}

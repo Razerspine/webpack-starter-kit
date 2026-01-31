@@ -1,0 +1,27 @@
+@import '../settings/_variables';
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-subtle);
+  background-clip: padding-box;
+  border: 1px solid var(--border-subtle);
+  border-radius: @border-radius;
+  transition: border-color .15s ease, box-shadow .15s ease;
+  box-sizing: border-box;
+
+  &:focus {
+    color: var(--text-primary);
+    border-color: var(--border-interactive);
+    box-shadow: var(--shadow-outline);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}

@@ -1,0 +1,66 @@
+extends @views/layout/index.pug
+
+block variables
+  - title = 'Grid'
+
+append style
+  link(rel='stylesheet' href='./style.less')
+
+block content
+  section.section.m-b-4
+    h1.title-h1.m-b-4(data-i18n='grid.title')
+    section.section
+      h3.title-h4.m-b-2(data-i18n='grid.blocks.basic.title')
+      p.m-b-2(data-i18n='grid.blocks.basic.description')
+      .container
+        .row
+          .col-6
+            .card.bg-brand-500(data-i18n='grid.blocks.basic.columnText')
+          .col-6
+            .card.bg-brand-600(data-i18n='grid.blocks.basic.columnText')
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2(data-i18n='grid.blocks.responsive.title')
+    p.m-b-2(data-i18n='grid.blocks.responsive.description')
+    .container
+      .row
+        .col-12.col-md-6
+          .card.bg-brand-600(data-i18n='grid.blocks.responsive.columnText')
+        .col-12.col-md-6
+          .card.bg-brand-500(data-i18n='grid.blocks.responsive.columnText')
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2(data-i18n='grid.blocks.columns.title')
+    p.m-b-2(data-i18n='grid.blocks.columns.description')
+    .container
+      .row
+        .col-4
+          .card.bg-brand-500(data-i18n='grid.blocks.columns.columnText1')
+        .col-4
+          .card.bg-brand-600(data-i18n='grid.blocks.columns.columnText2')
+        .col-4
+          .card.bg-brand-700(data-i18n='grid.blocks.columns.columnText3')
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2(data-i18n='grid.blocks.width.title')
+    p.m-b-2(data-i18n='grid.blocks.width.description')
+    .container
+      .row
+        .col-full
+          .card.bg-brand-500(data-i18n='grid.blocks.width.columnText')
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2(data-i18n='grid.blocks.offset.title')
+    p.m-b-2(data-i18n='grid.blocks.offset.description')
+    .container
+      .row
+        .col-4.offset-2
+          .card.bg-brand-500(data-i18n='grid.blocks.offset.columnText')
+
+  section.section.m-b-4
+    h3.title-h4.m-b-2(data-i18n='grid.blocks.reOffset.title')
+    p.m-b-2(data-i18n='grid.blocks.reOffset.description')
+    .container
+      .row
+        .col-6.col-md-4.offset-md-2
+          .card.bg-brand-500(data-i18n='grid.blocks.reOffset.columnText')

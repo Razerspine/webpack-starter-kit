@@ -1,0 +1,400 @@
+@import '_helpers';
+
+// Space scale
+@space-0: 0rem;
+@space-1: 0.5rem;
+@space-2: 1rem;
+@space-3: 1.5rem;
+@space-4: 2rem;
+
+/* -------------------------
+   Helper: get-space(@s) -> @space-value
+   Usage: call .get-space(@s) then use @space-value
+   ------------------------- */
+.get-space(@s) when (@s = 0) {
+  @space-value: @space-0;
+}
+
+.get-space(@s) when (@s = 1) {
+  @space-value: @space-1;
+}
+
+.get-space(@s) when (@s = 2) {
+  @space-value: @space-2;
+}
+
+.get-space(@s) when (@s = 3) {
+  @space-value: @space-3;
+}
+
+.get-space(@s) when (@s = 4) {
+  @space-value: @space-4;
+}
+
+.get-space(@s) when not (@s = 0) and not (@s = 1) and not (@s = 2) and not (@s = 3) and not (@s = 4) {
+  // fallback
+  @space-value: 0rem;
+}
+
+/* -------------------------
+   Generate margin/padding utilities
+   Directions: "", t, r, b, l, x, y
+   x -> left & right
+   y -> top & bottom
+   ------------------------- */
+
+.generate-mp-scales(@s) when (@s >= 0) {
+  .get-space(@s);
+
+  /* margin */
+  .m-@{s} {
+    margin: @space-value;
+  }
+  .m-t-@{s} {
+    margin-top: @space-value;
+  }
+  .m-r-@{s} {
+    margin-right: @space-value;
+  }
+  .m-b-@{s} {
+    margin-bottom: @space-value;
+  }
+  .m-l-@{s} {
+    margin-left: @space-value;
+  }
+  .m-x-@{s} {
+    margin-left: @space-value;
+    margin-right: @space-value;
+  }
+  .m-y-@{s} {
+    margin-top: @space-value;
+    margin-bottom: @space-value;
+  }
+
+  /* padding */
+  .p-@{s} {
+    padding: @space-value;
+  }
+  .p-t-@{s} {
+    padding-top: @space-value;
+  }
+  .p-r-@{s} {
+    padding-right: @space-value;
+  }
+  .p-b-@{s} {
+    padding-bottom: @space-value;
+  }
+  .p-l-@{s} {
+    padding-left: @space-value;
+  }
+  .p-x-@{s} {
+    padding-left: @space-value;
+    padding-right: @space-value;
+  }
+  .p-y-@{s} {
+    padding-top: @space-value;
+    padding-bottom: @space-value;
+  }
+
+  .generate-mp-scales(@s - 1);
+}
+
+.generate-mp-scales(4); // generates 4..0
+
+/* -------------------------
+   DISPLAY utilities
+   ------------------------- */
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+/* -------------------------
+   TEXT ALIGN
+   ------------------------- */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* -------------------------
+   VISIBILITY
+   ------------------------- */
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* -------------------------
+   FLEX helpers
+   ------------------------- */
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* -------------------------
+   GRID helpers
+   ------------------------- */
+.grid {
+  display: grid;
+}
+
+.grid-center {
+  display: grid;
+  place-items: center;
+}
+
+/* -------------------------
+   WIDTH / HEIGHT utilities
+   ------------------------- */
+.w-100 {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+
+/* -------------------------
+   TEXT TRUNCATE
+   ------------------------- */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* -------------------------
+   TITLES
+   ------------------------- */
+.title-h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.title-h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.title-h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.title-h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.title-h5 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.title-h6 {
+  font-size: .875rem;
+  font-weight: 700;
+}
+
+/* -------------------------
+   TEXT COLORS (CSS variables kept)
+   ------------------------- */
+.brand-50 {
+  color: var(--brand-50);
+}
+
+.brand-100 {
+  color: var(--brand-100);
+}
+
+.brand-500 {
+  color: var(--brand-500);
+}
+
+.brand-600 {
+  color: var(--brand-600);
+}
+
+.brand-700 {
+  color: var(--brand-700);
+}
+
+.slate-50 {
+  color: var(--slate-50);
+}
+
+.slate-100 {
+  color: var(--slate-100);
+}
+
+.slate-200 {
+  color: var(--slate-200);
+}
+
+.slate-300 {
+  color: var(--slate-300);
+}
+
+.slate-400 {
+  color: var(--slate-400);
+}
+
+.slate-500 {
+  color: var(--slate-500);
+}
+
+.slate-900 {
+  color: var(--slate-900);
+}
+
+.color-success {
+  color: var(--success);
+}
+
+.color-warning {
+  color: var(--warning);
+}
+
+.color-error {
+  color: var(--error);
+}
+
+.color-info {
+  color: var(--info);
+}
+
+/* -------------------------
+   BACKGROUND COLORS
+   ------------------------- */
+.bg-brand-50 {
+  background-color: var(--brand-50);
+}
+
+.bg-brand-100 {
+  background-color: var(--brand-100);
+}
+
+.bg-brand-500 {
+  background-color: var(--brand-500);
+}
+
+.bg-brand-600 {
+  background-color: var(--brand-600);
+}
+
+.bg-brand-700 {
+  background-color: var(--brand-700);
+}
+
+.bg-slate-50 {
+  background-color: var(--slate-50);
+}
+
+.bg-slate-100 {
+  background-color: var(--slate-100);
+}
+
+.bg-slate-200 {
+  background-color: var(--slate-200);
+}
+
+.bg-slate-300 {
+  background-color: var(--slate-300);
+}
+
+.bg-slate-400 {
+  background-color: var(--slate-400);
+}
+
+.bg-slate-500 {
+  background-color: var(--slate-500);
+}
+
+.bg-slate-900 {
+  background-color: var(--slate-900);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+.bg-warning {
+  background-color: var(--warning);
+}
+
+.bg-error {
+  background-color: var(--error);
+}
+
+.bg-info {
+  background-color: var(--info);
+}

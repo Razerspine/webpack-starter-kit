@@ -1,0 +1,54 @@
+@import '../settings/_index';
+
+.layout {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  display: grid;
+  grid-template-areas: 'header' 'aside' 'main' 'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  width: 100%;
+  min-height: 100dvh;
+  gap: @gutter;
+  font-family: @font-family;
+  font-size: @base-font-size;
+  font-weight: 400;
+  line-height: 1.5;
+
+  @media screen and (min-width: @breakpoint-lg) {
+    grid-template-areas:
+      'header header header header'
+      'gutter-left aside main gutter-right'
+      'footer footer footer footer';
+    grid-template-columns:
+      1fr
+      minmax(@aside-min, calc(@available-width * @aside-ratio / @total-ratio))
+      minmax(@main-min, calc(@available-width * @main-ratio / @total-ratio))
+      1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: calc(@gutter * 2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition-duration: 0ms;
+      animation-duration: 0ms;
+    }
+  }
+}
+
+.layout-simple {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  display: grid;
+  grid:
+    "header" auto
+    "main" 1fr
+    "footer" auto
+    / 1fr;
+  width: 100%;
+  font-family: @font-family;
+  font-size: @base-font-size;
+  font-weight: 400;
+  line-height: 1.5;
+}

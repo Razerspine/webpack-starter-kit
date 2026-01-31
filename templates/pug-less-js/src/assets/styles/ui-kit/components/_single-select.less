@@ -1,0 +1,29 @@
+@import '_form-control';
+
+.single-select {
+  .form-control();
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right .5rem center;
+  background-size: 1rem;
+  cursor: pointer;
+  padding: .5rem 1.5rem .5rem .75rem;
+
+  &:invalid {
+    color: var(--text-secondary);
+  }
+
+  option {
+    color: var(--text-primary);
+    background-color: var(--bg-subtle);
+    padding: 0.5rem;
+
+    &:disabled {
+      color: var(--text-primary);
+      opacity: .6;
+    }
+  }
+}

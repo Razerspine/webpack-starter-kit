@@ -1,0 +1,104 @@
+@import '../settings/_index';
+
+// breakpoint lists
+@bp-names: xs, sm, md, lg, xl;
+@bp-values: 0, 576px, 768px, 992px, 1200px;
+
+// Container
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: @container-max;
+  padding-left: @gutter;
+  padding-right: @gutter;
+  box-sizing: border-box;
+}
+
+// Row
+.row {
+  display: grid;
+  grid-template-columns: repeat(@columns, 1fr);
+  gap: @gutter;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* Column spans generator (creates .col-1 ... .col-@{columns}) */
+.generate-col-span(@i) when (@i > 0) {
+  .col-@{i} {
+    grid-column: span @i;
+  }
+  .generate-col-span(@i - 1);
+}
+.generate-col-span(0) {} // terminator
+.generate-col-span(@columns);
+
+/* Responsive column spans
+   Uses the @bp-names and @bp-values lists to generate:
+   .col-sm-1 ... .col-sm-12, .col-md-1 ... etc (skips bp value 0)
+*/
+.generate-cols-for(@n, @name) when (@n > 0) {
+  .col-@{name}-@{n} {
+    grid-column: span @n;
+  }
+  .generate-cols-for(@n - 1, @name);
+}
+.generate-cols-for(0, @name) {} // terminate recursion
+
+// maybe-media: skip when bp equals 0 (reliable guard)
+.maybe-media(@bp, @name) when not (@bp = 0) {
+  @media (min-width: @bp) {
+    .generate-cols-for(@columns, @name);
+  }
+}
+.maybe-media(@bp, @name) when (@bp = 0) {} // no-op for 0
+
+.generate-responsive(@idx) when (@idx > 0) {
+  @name: extract(@bp-names, @idx);
+  @bp: extract(@bp-values, @idx);
+  .maybe-media(@bp, @name);
+  .generate-responsive(@idx - 1);
+}
+.generate-responsive(length(@bp-names));
+
+/* full width column */
+.col-full {
+  grid-column: 1 / -1;
+}
+
+/* Offset helpers
+   Creates .offset-1 ... .offset-@{columns} and responsive variants
+   Formula mirrors SCSS: margin-left: calc((100% / columns) * i + (gutter * i))
+*/
+.generate-offset(@i) when (@i > 0) {
+  .offset-@{i} {
+    margin-left: calc((100% / @columns) * @i + (@gutter * @i));
+  }
+
+  // responsive offsets for each breakpoint
+  .generate-offset-bp(@i, length(@bp-names));
+  .generate-offset(@i - 1);
+}
+.generate-offset(0) {} // terminate recursion
+
+.generate-offset-bp(@i, @idx) when (@idx > 0) {
+  @name: extract(@bp-names, @idx);
+  @bp: extract(@bp-values, @idx);
+  .maybe-offset-media(@bp, @name, @i);
+  .generate-offset-bp(@i, @idx - 1);
+}
+.generate-offset-bp(@i, 0) {} // terminate recursion
+
+// maybe-offset-media: skip when bp equals 0 (reliable guard)
+.maybe-offset-media(@bp, @name, @i) when not (@bp = 0) {
+  @media (min-width: @bp) {
+    .offset-@{name}-@{i} {
+      margin-left: calc((100% / @columns) * @i + (@gutter * @i));
+    }
+  }
+}
+.maybe-offset-media(@bp, @name, @i) when (@bp = 0) {} // no-op for 0
+
+/* Kick off offset generation */
+.generate-offset(@columns);

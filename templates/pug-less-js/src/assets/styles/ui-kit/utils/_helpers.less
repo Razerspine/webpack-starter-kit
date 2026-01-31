@@ -1,0 +1,32 @@
+// space scale as individual Less variables
+@space-0: 0rem;
+@space-1: 0.25rem; // приклад, підстав свої значення
+@space-2: 0.5rem;
+@space-3: 0.75rem;
+@space-4: 1rem;
+@space-5: 1.5rem;
+@space-6: 2rem;
+@space-7: 3rem;
+
+/* get-space mixin: sets @space-value according to @k */
+.get-space(@k) when (@k = 0)  { @space-value: @space-0; }
+.get-space(@k) when (@k = 1)  { @space-value: @space-1; }
+.get-space(@k) when (@k = 2)  { @space-value: @space-2; }
+.get-space(@k) when (@k = 3)  { @space-value: @space-3; }
+.get-space(@k) when (@k = 4)  { @space-value: @space-4; }
+.get-space(@k) when (@k = 5)  { @space-value: @space-5; }
+.get-space(@k) when (@k = 6)  { @space-value: @space-6; }
+.get-space(@k) when (@k = 7)  { @space-value: @space-7; }
+/* fallback for unknown keys */
+.get-space(@k) when not (@k = 0) and not (@k = 1) and not (@k = 2) and not (@k = 3) and not (@k = 4) and not (@k = 5) and not (@k = 6) and not (@k = 7) {
+  @space-value: 0rem;
+}
+
+/* suf mixin: returns number unchanged, otherwise returns as-is
+   usage: .suf(@val); then use @suf-value */
+.suf(@k) when (isnumber(@k)) {
+  @suf-value: @k;
+}
+.suf(@k) when not (isnumber(@k)) {
+  @suf-value: @k;
+}
