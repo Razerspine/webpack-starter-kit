@@ -1,28 +1,6 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PugPlugin = require('pug-plugin');
 
-module.exports = (env = {}) => {
-  const useHtml = env.templates === 'html';
-
-  if (useHtml) {
-    return {
-      plugins: [
-        new HtmlWebpackPlugin({
-          template: path.resolve(process.cwd(), 'src/pages/index.html'),
-          filename: 'index.html',
-        }),
-      ],
-      moduleRules: [
-        {
-          test: /\.html$/,
-          loader: 'html-loader',
-        },
-      ],
-    };
-  }
-
-  // default: PUG
+module.exports = () => {
   return {
     plugins: [
       new PugPlugin({
