@@ -7,5 +7,6 @@ coverage
 coverage.lcov
 node_modules
 starter-source/node_modules
+starter-source/dist
 public
 dist
