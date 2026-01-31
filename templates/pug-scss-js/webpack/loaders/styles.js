@@ -1,21 +1,6 @@
-module.exports = (env = {}) => {
-  const useLess = env.styles === 'less';
-
-  const preProcessorLoader = useLess ? {
-    loader: 'less-loader',
-    options: {
-      lessOptions: {
-        javascriptEnabled: true,
-      },
-    },
-  } : {
-    loader: 'sass-loader',
-  };
-
-  const test = useLess ? /\.(css|less)$/ : /\.(css|sass|scss)$/;
-
+module.exports = () => {
   return {
-    test,
+    test: /\.(css|sass|scss)$/,
     use: [
       'css-loader',
       {
@@ -26,7 +11,9 @@ module.exports = (env = {}) => {
           },
         },
       },
-      preProcessorLoader,
+      {
+        loader: 'sass-loader',
+      }
     ],
   };
 };
