@@ -1,4 +1,4 @@
-@use '../settings' as *;
+@use '../settings/index' as *;
 
 .footer {
   grid-area: footer;

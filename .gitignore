@@ -1,9 +1,11 @@
 .DS_Store
 .idea
 _ignore
+starter-source/package-lock.json
 package-lock.json
 coverage
 coverage.lcov
 node_modules
+starter-source/node_modules
 public
 dist
