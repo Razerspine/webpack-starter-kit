@@ -1,8 +1,8 @@
 const path = require('path');
-const PugPlugin = require('pug-plugin');
+const templates = require('./loaders/templates');
 
 module.exports = (env = {}) => {
-  const isDev = env.mode === 'development';
+  const templatesConfig = templates(env);
 
   return {
     output: {
@@ -23,22 +23,7 @@ module.exports = (env = {}) => {
     },
 
     plugins: [
-      new PugPlugin({
-        entry: 'src/views/pages/',
-        filename: ({ chunk }) => {
-          let [name] = chunk.name.split('/');
-          if (name === 'home') name = 'index';
-          return `${name}.html`;
-        },
-
-        js: {
-          filename: 'js/[name].[contenthash:8].js',
-        },
-
-        css: {
-          filename: 'css/[name].[contenthash:8].css',
-        },
-      }),
+      ...templatesConfig.plugins,
     ],
 
     module: {
